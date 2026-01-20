@@ -1,0 +1,243 @@
+/**
+ * Chatbot Component Styles
+ * WCAG 2.1 AA compliant, mobile-first
+ */
+
+.chatToggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ifm-color-primary);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatToggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.chatToggle:focus {
+  outline: 3px solid var(--ifm-color-primary-lighter);
+  outline-offset: 2px;
+}
+
+/* Chat Modal */
+.chatModal {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.5rem;
+  width: 380px;
+  height: 500px;
+  max-height: calc(100vh - 8rem);
+  background: var(--ifm-background-color);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Mobile fullscreen */
+@media screen and (max-width: 576px) {
+  .chatModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .chatToggle {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Chat Header */
+.chatHeader {
+  padding: 1rem 1.25rem;
+  background: var(--ifm-color-primary);
+  color: white;
+}
+
+.chatHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.chatSubtitle {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* Messages Container */
+.chatMessages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Individual Message */
+.message {
+  display: flex;
+  max-width: 85%;
+}
+
+.message.user {
+  align-self: flex-end;
+}
+
+.message.assistant {
+  align-self: flex-start;
+}
+
+.messageContent {
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.user .messageContent {
+  background: var(--ifm-color-primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.assistant .messageContent {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-font-color-base);
+  border-bottom-left-radius: 4px;
+}
+
+[data-theme='dark'] .assistant .messageContent {
+  background: var(--ifm-color-emphasis-200);
+}
+
+/* Sources */
+.sources {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  font-size: 0.8rem;
+}
+
+.sources a {
+  margin-left: 0.25rem;
+  color: var(--ifm-color-primary);
+}
+
+.sources a:hover {
+  text-decoration: underline;
+}
+
+/* Typing Indicator */
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 0.5rem 0;
+}
+
+.typing span {
+  width: 8px;
+  height: 8px;
+  background: var(--ifm-color-emphasis-400);
+  border-radius: 50%;
+  animation: typing 1.4s infinite ease-in-out both;
+}
+
+.typing span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes typing {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Chat Form */
+.chatForm {
+  display: flex;
+  padding: 0.75rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  gap: 0.5rem;
+}
+
+.chatForm input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 24px;
+  font-size: 0.95rem;
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+}
+
+.chatForm input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px var(--ifm-color-primary-lighter);
+}
+
+.chatForm input::placeholder {
+  color: var(--ifm-color-emphasis-500);
+}
+
+.chatForm button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ifm-color-primary);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.chatForm button:hover:not(:disabled) {
+  background: var(--ifm-color-primary-dark);
+}
+
+.chatForm button:disabled {
+  background: var(--ifm-color-emphasis-300);
+  cursor: not-allowed;
+}
+
+.chatForm button:focus {
+  outline: 2px solid var(--ifm-color-primary-lighter);
+  outline-offset: 2px;
+}
